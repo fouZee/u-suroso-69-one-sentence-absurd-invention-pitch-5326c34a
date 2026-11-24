@@ -11,9 +11,9 @@ const OUTPUT_PATH = "/output/entry.txt";
 const MAX_CHARS = 220;
 
 // The pitch: a doormat that shames you into wiping your shoes by
-// apologising to the floor on your behalf.
+// apologising to the floor on your behalf, in a wounded posh accent.
 const ENTRY =
-  "A doormat that, the moment you track mud inside, apologizes to the floor in a posh accent so profusely that you wipe your shoes out of sheer second-hand embarrassment.";
+  "A doormat that, the moment you track mud inside, apologizes to the floor in such a posh, wounded accent that you wipe your shoes just to end its suffering.";
 
 function validate(text: string): void {
   if (text.length === 0 || text.length > MAX_CHARS) {
@@ -21,6 +21,9 @@ function validate(text: string): void {
   }
   if (text.trim().length === 0) {
     throw new Error("entry must not be only white space");
+  }
+  if (/[\r\n]/.test(text)) {
+    throw new Error("entry must be a single line, no line breaks");
   }
   // Exactly one sentence: a single terminal full stop, no other
   // sentence-ending punctuation inside the text.
